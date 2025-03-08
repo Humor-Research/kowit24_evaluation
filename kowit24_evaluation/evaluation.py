@@ -132,6 +132,7 @@ def check_interpretation(annotation: dict, text: str) -> bool:
     )
 
     results = list()
+    results.append(-1)
 
     for elem in all_searcheable_elements:
         for text in all_texts:
