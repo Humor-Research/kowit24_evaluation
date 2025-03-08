@@ -94,6 +94,9 @@ def normalize_link(link):
 
 
 def check_interpretation(annotation: dict, text: str) -> bool:
+
+    if isinstance(annotation, str):
+        annotation = eval(annotation)
     
     searcheable_elements, searcheable_links = extract_searcheable_elements_and_links(annotation)
     
@@ -142,6 +145,9 @@ def check_interpretation(annotation: dict, text: str) -> bool:
     
     results = max(results)
     results = True if results >= 0 else False
+
+    if len(all_searcheable_elements) == 0:
+        results = None
 
     return results
     
