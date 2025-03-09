@@ -99,6 +99,9 @@ def check_interpretation(annotation: dict, text: str) -> bool:
         annotation = eval(annotation)
     
     searcheable_elements, searcheable_links = extract_searcheable_elements_and_links(annotation)
+
+    if len(searcheable_elements) + len(searcheable_links) == 0:
+        return None
     
     searcheable_elements = [str.lower(t) for t in searcheable_elements]
     searcheable_links = [normalize_link(t) for t in searcheable_links]
