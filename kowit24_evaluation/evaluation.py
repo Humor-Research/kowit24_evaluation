@@ -1,5 +1,7 @@
 import re
+
 import pymorphy3
+import numpy as np
 
 
 morph = pymorphy3.MorphAnalyzer()
@@ -101,7 +103,7 @@ def check_interpretation(annotation: dict, text: str) -> bool:
     searcheable_elements, searcheable_links = extract_searcheable_elements_and_links(annotation)
 
     if len(searcheable_elements) + len(searcheable_links) == 0:
-        return None
+        return np.nan
     
     searcheable_elements = [str.lower(t) for t in searcheable_elements]
     searcheable_links = [normalize_link(t) for t in searcheable_links]
@@ -150,7 +152,7 @@ def check_interpretation(annotation: dict, text: str) -> bool:
     results = True if results >= 0 else False
 
     if len(all_searcheable_elements) == 0:
-        results = None
+        results = np.nan
 
     return results
     
